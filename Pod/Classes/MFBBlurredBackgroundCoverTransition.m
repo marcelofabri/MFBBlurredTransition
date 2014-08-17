@@ -85,11 +85,13 @@ static NSInteger const MFBBlurredViewTag = 19;
         value *= 2;
     }
     
-    UIInterpolatingMotionEffect *verticalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+    NSString *keyPath = UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation) ? @"center.y" : @"center.x";
+    UIInterpolatingMotionEffect *verticalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:keyPath type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
     verticalMotionEffect.minimumRelativeValue = @(-value);
     verticalMotionEffect.maximumRelativeValue = @(value);
     
-    UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+    keyPath = UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation) ? @"center.x" : @"center.y";
+    UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:keyPath type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
     horizontalMotionEffect.minimumRelativeValue = @(-value);
     horizontalMotionEffect.maximumRelativeValue = @(value);
     
@@ -112,7 +114,7 @@ static NSInteger const MFBBlurredViewTag = 19;
     
     UIView *blurredImageView = [self createBlurredViewForContext:transitionContext];
     [container addSubview:[transitionContext originalViewController].view];
-    [container addSubview:blurredImageView];
+    [[transitionContext originalViewController].view addSubview:blurredImageView];
     [container addSubview:modalController.view];
     
     blurredImageView.alpha = 0;
@@ -177,11 +179,11 @@ static NSInteger const MFBBlurredViewTag = 19;
     blurredImageView.contentMode = UIViewContentModeBottom;
     blurredImageView.clipsToBounds = YES;
     blurredImageView.frame = [self initialBlurredViewFrame:transitionContext];
-    
+    blurredImageView.userInteractionEnabled = YES;
+	
     SEL selector = sel_registerName("blurTapped:");
     
     if ([toController respondsToSelector:selector]) {
-        blurredImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:toController
                                                                              action:selector];
         [blurredImageView addGestureRecognizer:gr];
@@ -191,7 +193,7 @@ static NSInteger const MFBBlurredViewTag = 19;
 }
 
 - (UIView *)blurredViewForContext:(id<MFBViewControllerContextTransitioning>)transitionContext {
-    return [[transitionContext containerView] viewWithTag:MFBBlurredViewTag];
+    return [[transitionContext originalViewController].view viewWithTag:MFBBlurredViewTag];
 }
 
 - (UIImageView *)blurredView:(UIView *)view forStyle:(MFBTransitionBlurStyle)style {
