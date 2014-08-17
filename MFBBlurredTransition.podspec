@@ -1,36 +1,18 @@
-#
-# Be sure to run `pod lib lint MFBBlurredTransition.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "MFBBlurredTransition"
   s.version          = "0.1.0"
-  s.summary          = "A short description of MFBBlurredTransition."
-  s.description      = <<-DESC
-                       An optional longer description of MFBBlurredTransition
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
-                       DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/MFBBlurredTransition"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.summary          = "Present modal view controllers with blur behind them."
+  s.description      = "Present modal view controllers with blur behind them, using iOS 7 transitioning APIs. Based on [KLViewControllerTransitions](https://github.com/klundberg/KLViewControllerTransitions)"
+  s.homepage         = "https://github.com/marcelofabri/MFBBlurredTransition"
   s.license          = 'MIT'
-  s.author           = { "Marcelo Fabri" => "marcelofabrimf@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/MFBBlurredTransition.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { "Marcelo Fabri" => "me@marcelofabri.com" }
+  s.source           = { :git => "https://github.com/marcelofabri/MFBBlurredTransition.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/marcelofabri_'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes'
-  s.resources = 'Pod/Assets/*.png'
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'UIView+UIImageEffects'
+  s.dependency 'CGFloatType'
 end

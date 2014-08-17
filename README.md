@@ -1,15 +1,16 @@
 # MFBBlurredTransition
 
-[![CI Status](http://img.shields.io/travis/Marcelo Fabri/MFBBlurredTransition.svg?style=flat)](https://travis-ci.org/Marcelo Fabri/MFBBlurredTransition)
-[![Version](https://img.shields.io/cocoapods/v/MFBBlurredTransition.svg?style=flat)](http://cocoadocs.org/docsets/MFBBlurredTransition)
-[![License](https://img.shields.io/cocoapods/l/MFBBlurredTransition.svg?style=flat)](http://cocoadocs.org/docsets/MFBBlurredTransition)
-[![Platform](https://img.shields.io/cocoapods/p/MFBBlurredTransition.svg?style=flat)](http://cocoadocs.org/docsets/MFBBlurredTransition)
+Present modal view controllers with blur behind them, using iOS 7 transitioning APIs. 
+
+Based on [KLViewControllerTransitions](https://github.com/klundberg/KLViewControllerTransitions).
 
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+iOS 7+
 
 ## Installation
 
@@ -20,7 +21,7 @@ it, simply add the following line to your Podfile:
 
 ## Author
 
-Marcelo Fabri, marcelofabrimf@gmail.com
+Marcelo Fabri, me@marcelofabri.com
 
 ## License
 

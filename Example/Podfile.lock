@@ -1,0 +1,23 @@
+PODS:
+  - CGFloatType (1.0.1)
+  - MFBBlurredTransition (0.1.0):
+    - CGFloatType
+    - UIView+UIImageEffects
+  - UIImageEffects (0.0.1)
+  - UIView+UIImageEffects (0.0.1):
+    - UIImageEffects
+
+DEPENDENCIES:
+  - MFBBlurredTransition (from `../`)
+
+EXTERNAL SOURCES:
+  MFBBlurredTransition:
+    :path: ../
+
+SPEC CHECKSUMS:
+  CGFloatType: 730ef19a26a96341e659fb51aa1dbb654fd2f231
+  MFBBlurredTransition: 05886454f4595f6e54f435fab8fcebb60b50a726
+  UIImageEffects: 69cd1e1f8fc4042a8fefcf4a0727cbf213e4dbfb
+  UIView+UIImageEffects: d5d0e2101adbbdb6e7dfaf073a332fe8e151e50b
+
+COCOAPODS: 0.33.1
