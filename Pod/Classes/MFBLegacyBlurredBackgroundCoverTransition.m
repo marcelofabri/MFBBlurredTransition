@@ -4,17 +4,18 @@
 //  Created by Marcelo Fabri on 08/16/14.
 //
 
-#import "MFBBlurredBackgroundCoverTransition.h"
+#import "MFBLegacyBlurredBackgroundCoverTransition.h"
 #import "UIView+UIImageEffects.h"
 #import "MFBTransitionContextDecorator.h"
+#import "MFBMotionEffectsHelper.h"
 
 static NSInteger const MFBBlurredViewTag = 19;
 
-@interface MFBBlurredBackgroundCoverTransition ()
+@interface MFBLegacyBlurredBackgroundCoverTransition ()
 
 @end
 
-@implementation MFBBlurredBackgroundCoverTransition
+@implementation MFBLegacyBlurredBackgroundCoverTransition
 
 - (instancetype)init {
     return [self initWithDirection:MFBTransitionDirectionForwards];
@@ -78,29 +79,6 @@ static NSInteger const MFBBlurredViewTag = 19;
     }
 }
 
-- (void)addMotionEffects:(UIView *)view {
-    
-    CGFloat value = 20;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        value *= 2;
-    }
-    
-    NSString *keyPath = UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation) ? @"center.y" : @"center.x";
-    UIInterpolatingMotionEffect *verticalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:keyPath type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-    verticalMotionEffect.minimumRelativeValue = @(-value);
-    verticalMotionEffect.maximumRelativeValue = @(value);
-    
-    keyPath = UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation) ? @"center.x" : @"center.y";
-    UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:keyPath type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-    horizontalMotionEffect.minimumRelativeValue = @(-value);
-    horizontalMotionEffect.maximumRelativeValue = @(value);
-    
-    UIMotionEffectGroup *group = [[UIMotionEffectGroup alloc] init];
-    group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
-    
-    [view addMotionEffect:group];
-}
-
 - (void)setupForwardAnimation:(id<MFBViewControllerContextTransitioning>)transitionContext {
     UIView *container = [transitionContext containerView];
     
@@ -110,7 +88,7 @@ static NSInteger const MFBBlurredViewTag = 19;
     modalController.view.layer.shadowOpacity = .4f;
     modalController.view.layer.shadowOffset = CGSizeMake(-1, -1);
     
-    [self addMotionEffects:modalController.view];
+    [MFBMotionEffectsHelper addMotionEffectsToView:modalController.view];
     
     UIView *blurredImageView = [self createBlurredViewForContext:transitionContext];
     [container addSubview:[transitionContext originalViewController].view];

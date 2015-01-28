@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "MFBTransitionEnums.h"
 
-@interface MFBBlurredBackgroundCoverTransition : NSObject <UIViewControllerAnimatedTransitioning>
+@interface MFBLegacyBlurredBackgroundCoverTransition : NSObject <UIViewControllerAnimatedTransitioning>
 
 - (instancetype)initWithDirection:(MFBTransitionDirection)direction;
 + (instancetype)transitionWithDirection:(MFBTransitionDirection)direction;
