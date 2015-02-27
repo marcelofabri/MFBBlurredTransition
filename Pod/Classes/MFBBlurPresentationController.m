@@ -24,10 +24,10 @@ NSString * mfb_devicePlatform() {
 }
 
 BOOL mfb_deviceSupportsBlur() {
-    NSArray *crappyDevices = @[@"iPhone3,1", @"iPhone 4", @"iPhone3,2", @"iPhone3,3",
+    NSArray *crappyDevices = @[@"iPhone3,1", @"iPhone3,2", @"iPhone3,3",
                                @"iPad2,1", @"iPad2,2", @"iPad2,3", @"iPad3,1", @"iPad3,2", @"iPad3,3"];
     
-    return [crappyDevices containsObject:mfb_devicePlatform()];
+    return ![crappyDevices containsObject:mfb_devicePlatform()];
 }
 
 @interface MFBBlurPresentationController ()
