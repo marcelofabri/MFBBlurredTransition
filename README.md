@@ -19,10 +19,6 @@ it, simply add the following line to your Podfile:
 
     pod "MFBBlurredTransition"
 
-## Author
-
-Marcelo Fabri, me@marcelofabri.com
-
 ## License
 
 MFBBlurredTransition is available under the MIT license. See the LICENSE file for more info.
